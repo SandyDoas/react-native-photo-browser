@@ -1,5 +1,6 @@
 # React Native Photo Browser
 
+### Information
 A full screen image gallery with captions, selections and grid view support for react-native. Layout and API design are inspired by great [MWPhotoBrowser](https://github.com/mwaterfall/MWPhotoBrowser) library.
 
 The component has both iOS and Android support.
@@ -16,11 +17,14 @@ The component has both iOS and Android support.
 
 | Prop | Type | Description | Default |
 |---|---|---|---|
+|**`style`**|Style|Overrides default container style.|`null`|
 |**`mediaList`**|Array\<Media\>|List of [media objects](#media-object) to display.|`[]`|
 |**`initialIndex`**|Number|Sets the visible photo initially.|`0`|
 |**`alwaysShowControls`**|Boolean|Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full.|`false`|
 |**`displayActionButton`**|Boolean|Show action button to allow sharing, copying, etc.|`false`|
 |**`displayNavArrows`**|Boolean|Whether to display left and right nav arrows on bottom toolbar.|`false`|
+|**`alwaysDisplayStatusBar`**|Boolean|Whether to display the OS Status Bar.|`false`|
+|**`displayTopBar`**|Boolean|Whether to display top bar.|`true`|
 |**`enableGrid`**|Boolean|Whether to allow the viewing of all the photo thumbnails on a grid.|`true`|
 |**`startOnGrid`**|Boolean|Whether to start on the grid of thumbnails instead of the first photo.|`false`|
 |**`displaySelectionButtons`**|Boolean|Whether selection buttons are shown on each image.|`false`|
@@ -29,6 +33,11 @@ The component has both iOS and Android support.
 |**`onActionButton`**|Function|Called when action button is pressed for a photo. Your application should handle sharing process, please see [Sharing](#sharing) section for more information. If you don't provide this method, action button tap event will simply be ignored.|`(media, index) => {}`|
 |**`onBack`**|Function|Called when back button is tapped.|`() => {}`|
 |**`itemPerRow`**|Number|Sets images amount in grid row.|`3`|
+|**`onPhotoLongPress`**|Function|Called when a long press trigged on a photo.|`() => {}`|
+|**`delayPhotoLongPress`**|Number|The long press delay in `ms`.|`1000`|
+|**`square`**|Boolean|Displays the thumbnails as squares(same width, height).|`false`|
+|**`gridOffset`**|Number|Offset the width of the grid from the screen width.|`0`|
+|**`customTitle`**|Function|Custom title in full screen mode.|`(index, rowCount) => { return '' }`|
 
 ### Media Object
 
@@ -36,6 +45,7 @@ The component has both iOS and Android support.
 const media = {
   thumb: '', // thumbnail version of the photo to be displayed in grid view. actual photo is used if thumb is not provided
   photo: '', // a remote photo or local media url
+  id: 1, // unique identifer for the photo; can be omitted if the `thumb`/`photo` will always be unique
   caption: '', // photo caption to be displayed
   selected: true, // set the photo selected initially(default is false)
 };
@@ -46,7 +56,7 @@ const media = {
 
 #### Android
 
-Built-in [ProgressBarAndroid](https://facebook.github.io/react-native/docs/progressbarandroid.html) component is used for Android. Any additional configuration is not needed.
+Built-in [ActivityIndicator](https://facebook.github.io/react-native/docs/activityindicator.html) component is used for Android. Any additional configuration is not needed.
 
 #### iOS
 

@@ -6,8 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react": "^15.2.1",
-    "react-native": "^0.29.2",
-    "react-native-photo-browser": "file:../"
+    "react": "16.6.0-alpha.8af6728",
+    "react-native": "0.57.3",
+    "react-native-photo-browser": "file:../",
+    "react-navigation": "^1.0.0-beta.19"
   }
 }
